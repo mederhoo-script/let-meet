@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# my push script
+push.sh
+
 # C extensions
 *.so
 
