@@ -102,8 +102,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## License
 
 [NONE](none).
-
----
-
-Feel free to customize this template according to your project's specific details and requirements. Happy coding!
-
