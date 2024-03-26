@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head %}
+
+        {% endblock head %}</title>
+
+</head>
+
+<body>
+    {% block body %}
+
+    {% endblock body %}
+    <script>
+        <!--// Call getLocation() function when the page loads
+        window.onload = function () {
+            getLocation();
+
+        };-->
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation);
+
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function sendLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            // Populate hidden form fields with coordinates
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+
+            // Submit the form
+            document.getElementById('loginForm').submit();
+        }
+    </script>
+</body>
+
+</html>

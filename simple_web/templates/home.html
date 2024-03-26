@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+Home
+{% endblock head %}
+
+
+{% block body %}
+<h2>Welcome, {{ username }}</h2>
+<p>This is the home page.</p>
+<p>Your current location: Latitude is: {{ latitude }}, Longitude is: {{ longitude }}</p>
+<a href="/logout">Logout</a>
+{% endblock body %}
