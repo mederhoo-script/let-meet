@@ -1,0 +1,32 @@
+{% extends 'base1.html' %}
+
+
+{% block head %}
+login
+{% endblock head %}
+
+
+{% block body %}
+<h4 style="color: green;">{{wel_msg}}</h4>
+<h2>Login</h2>
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+<form id="loginForm" action="/login" action="/login" method="post">
+	<input type="hidden" id="latitude" name="latitude">
+	<input type="hidden" id="longitude" name="longitude">
+
+	<label for="username">Username:</label>
+	<input type="text" id="username" name="username" required>
+	<br><br>
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password" required>
+	<br><br>
+	<input type="submit" value="Login">
+</form>
+<p>or</p>
+<a href="/index">Register HERE</a> <br><br>
+
+<button onclick="getLocation()">Get Location</button>
+
+{% endblock body %}
