@@ -1,10 +1,74 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>please select which platform you want to use</h2>
-<form method="post" class="buttons">
-	<input type="submit" value="let-chat" name="let-chat">
-	<input type="submit" value="let-connect" name="let-connect">
+<section class="hero d-flex justify-content-center align-items-center text-center bg-primary text-white">
+    <div class="container py-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Choose
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="https://facebook.com/mederhoo">About</a></li>
+                                <li><a class="dropdown-item" href="chat">Let's Chat</a></li>
+                                <li><a class="dropdown-item" href="index">Let's Connect</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h1 class="display-4 fw-bold mb-4">Connect Your Way</h1>
+        <p class="lead">Choose the perfect platform for your communication needs.</p>
 
-</form>
+        <form method="post" class="d-flex justify-content-center mt-4 gap-3">
+            <button type="submit" name="let-chat" class="btn btn-lg btn-light shadow-sm" value="let-chat">
+                <i class="fa-solid fa-comments fa-2x"></i>
+                <span class="d-block mt-2">Let's Chat</span>
+            </button>
+            <button type="submit" name="let-connect" class="btn btn-lg btn-light shadow-sm" value="let-connect">
+                <i class="fa-solid fa-handshake fa-2x"></i>
+                <span class="d-block mt-2">Let's Connect</span>
+            </button>
+        </form>
+    </div>
+</section>
 
+<section class="features container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <img src="/static/images/feed-1.jpg" class="card-img-top" alt="Let's Chat image">
+                <div class="card-body">
+                    <h5 class="card-title">Let's Chat - Casual and Fun</h5>
+                    <p class="card-text">Stay connected with friends and family. Share photos, videos, and voice
+                        messages to make chatting fun and engaging!</p>
+                    <a href="chat">Let's Chat</a>
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-6">
+            <div class="card mb-3">
+                <img src="/static/images/feed-5.jpg" class="card-img-top" alt="Let's Connect image">
+                <div class="card-body">
+                    <h5 class="card-title">Let's Connect - Professional Networking</h5>
+                    <p class="card-text">Build your professional network, connect with colleagues, and
+                        collaborate on
+                        projects securely.</p>
+                    <a href="index">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

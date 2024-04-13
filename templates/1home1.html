@@ -1,0 +1,89 @@
+{% extends 'base1.html' %}
+
+{% block head %}
+Let's Connect
+{% endblock head %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{username}}</a>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search Friends" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout">Logout</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <h3>Welcome {{username}}</h3>
+            </span>
+        </div>
+    </div>
+</nav>
+
+<div>
+
+
+    <form action="/home1" method="post">
+        <div>
+            <button type="submit" class="btn btn-primary btn-sm" name="post_text" value="post_text">Post Text</button>
+            <button type="submit" class="btn btn-sm btn-primary" name="post_img" value="post_img">Upload Image</button>
+            <a href="logout">Logout</a>
+        </div>
+    </form><br><br>
+
+    <h4>Trending news from ndtv</h4>
+    <iframe src="https://www.ndtv.com/trends" frameborder="0"></iframe>
+
+    <div id="pitch-embedded-content"></div>
+
+</div>
+
+{% if post_text %}
+
+<form action="/post_message" method="post">
+    <textarea name="message" rows="4" cols="50"></textarea><br>
+    <input type="submit" value="Post">
+</form>
+{% endif %}
+
+{% if post_img %}
+
+<form action="/post_message" method="post" enctype="multipart/form-data">
+    <input type="file" name="image"><br> <!-- Add input field for image upload -->
+    <input type="submit" value="Upload">
+</form>
+{% endif %}
+
+<ul>
+    {% for pos in post %}
+    <li>
+        {% if pos.image_path %}
+        <div>
+            <img src="{{ url_for('static', filename=pos.image_path) }}" alt="Image"> <!-- Display the image -->
+        </div>
+        {% else %}
+        {{ pos.content }} <!-- Display text content if it's not an image -->
+        {% endif %}
+        <br>
+        <div class="author"> <span class="by"> posted by: </span>{{ pos.author.name}}</div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock body %}

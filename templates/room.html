@@ -1,57 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="message-box">
-	<h2>Chat Room: {{room}}</h2>
-	online: {{mem}}
-	<div class="messages" id="messages"></div>
-	<div class="inputs">
-		<input type="text" rows="3" placeholder="message" name="message" id="message" onkeydown="sendh(event)">
-		<button type="button" name="send" id="send-btn" onclick="sendMessage()">
-			Send</button>
-	</div>
+    <h2>Chat Room: {{room}}</h2>
+    <div class="members">online: {{mem}}</div>
+    <div class="messages" id="messages"></div>
+    <div class="inputs">
+        <input type="text" rows="3" placeholder="message" name="message" id="message" onkeydown="sendh(event)">
+        <button type="button" name="send" id="send-btn" onclick="sendMessage()">
+            Send</button>
+    </div>
 </div>
 <script type="text/javascript">
-	function sendh(event) {
-		// Check if the key pressed is Enter (key code 13)
-		if (event.keyCode === 13) {
-			// Call your desired function or perform your action here
-			sendMessage();
-		}
-	}
-	var socketio = io();
+    function sendh(event) {
+        // Check if the key pressed is Enter (key code 13)
+        if (event.keyCode === 13) {
+            // Call your desired function or perform your action here
+            sendMessage();
+        }
+    }
+    var socketio = io();
 
-	const messages = document.getElementById("messages")
-	<!--const name = document.getElementById("")-->
+    const messages = document.getElementById("messages")
+    <!--const name = document.getElementById("")-->
 
-	const createMessage = (name, msg) => {
-		const content = `
-		<div class="text">
-			<span>
-				<strong>${name}</strong>: ${msg}
-			</span>
-			<span class="muted">
-				${new Date().toLocaleString()}
-			</span>
-		</div>
-		`;
-		messages.innerHTML += content;
-	};
+    const createMessage = (name, msg) => {
+        if (msg === "has enter the room") {
+            const content = `
+                <div class="text">
+                    <span>
+                        <strong>${name}</strong>: <span class="msg">${msg}</span>
+                    </span>
+                    <span class="muted">
+                        ${new Date().toLocaleString()}
+                    </span>
+                </div>
+            `;
+            messages.innerHTML += content;
+        } else {
+            const content = `
+                <div class="text">
+                    <span>
+                        <strong>${name}</strong>: <span class="msg1">${msg}</span>
+                    </span>
+                    <span class="muted">
+                        ${new Date().toLocaleString()}
+                    </span>
+                </div>
+            `;
+            messages.innerHTML += content;
+        }
+    };
 
-	socketio.on("message", (data) => {
-		createMessage(data.name, data.message);
-	})
+    socketio.on("message", (data) => {
+        createMessage(data.name, data.message);
+    })
 
-	const sendMessage = () => {
-		const message = document.getElementById("message")
-		if (message.value == "") return;
-		socketio.emit("message", { data: message.value });
-		message.value = ""
-	};
+    const sendMessage = () => {
+        const message = document.getElementById("message")
+        if (message.value == "") return;
+        socketio.emit("message", { data: message.value });
+        message.value = ""
+    };
 </script>
 
 {% for msg in messages %}
 <script type="text/javascript">
-	createMessage("{{msg.name}}", "{{msg.message}}")
+    createMessage("{{msg.name}}", "{{msg.message}}")
 </script>
 {%endfor%}
 {% endblock %}

@@ -5,26 +5,42 @@ User Registration
 {% endblock head %}
 
 {% block body %}
-<h2>User Registration</h2>
-<form id="loginForm" action="/register" method="post">
+<div class="container px-5 justify-content-center align-items-center"
+    style="background-image: url('https://media.istockphoto.com/id/1207681692/photo/young-happy-men-and-woman-at-cafe.jpg?s=612x612&w=0&k=20&c=75OSoCVcka2_7szMjZJCPY5G6weKoC6pIKvmGykqoSI='); background-size: cover; background-position: center; height: 100vh;">
 
-	<input type="hidden" id="latitude" name="latitude">
-	<input type="hidden" id="longitude" name="longitude">
+    <h2>User Registration</h2>
 
-	<label for="name">Name:</label>
-	<input type="text" id="name" name="name" required>
-	<br><br>
-	<div class="error" style="color:red">{{alrd_exist}} </div>
-	<label for="username">Username:</label>
-	<input type="text" id="username" name="username" required>
-	<br><br>
-	<label for="password">Password:</label>
-	<input type="password" id="password" name="password" required>
-	<br><br>
-	<input type="submit" value="Register">
-</form>
-<p>or</p>
-<a href="/login">Login</a> <br> <br>
-<button onclick="getLocation()">Get Location</button>
+    <form id="loginForm" action="/register" method="post" class="mb-1 px-5">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+                <div class="error invalid-feedback" style="display: block;">{{ alrd_exist }}</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <div class="error invalid-feedback" style="display: block;">{{ alrd_exist }}</div>
+            </div>
 
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="button" class="btn btn-outline-primary" onclick="getLocation()">Get Location</button>
+        </div>
+    </form>
+
+    <p class="text-center">or</p>
+    <p class="text-center"><a href="/login">Login Here</a></p>
+</div>
 {% endblock body %}

@@ -2,31 +2,41 @@
 
 
 {% block head %}
-login
+Login
 {% endblock head %}
 
 
 {% block body %}
-<h4 style="color: green;">{{wel_msg}}</h4>
-<h2>Login</h2>
-{% if error %}
-<p style="color: red;">{{ error }}</p>
-{% endif %}
-<form id="loginForm" action="/login" action="/login" method="post">
-	<input type="hidden" id="latitude" name="latitude">
-	<input type="hidden" id="longitude" name="longitude">
+<div class="container px-5 justify-content-center align-items-center"
+    style="background-image: url('https://media.istockphoto.com/id/1392016982/photo/mixed-group-of-business-people-sitting-around-a-table-and-talking.jpg?s=612x612&w=0&k=20&c=d7mWQhdzKrowHYTWXXcCrNn02uyfLYQYB78M75G8lKg='); background-size: cover; background-position: center; height: 100vh;">
 
-	<label for="username">Username:</label>
-	<input type="text" id="username" name="username" required>
-	<br><br>
-	<label for="password">Password:</label>
-	<input type="password" id="password" name="password" required>
-	<br><br>
-	<input type="submit" value="Login">
-</form>
-<p>or</p>
-<a href="/index">Register HERE</a> <br><br>
+    <h4 class="text-success">{{ wel_msg }}</h4>
+    <h2>Login</h2>
 
-<button onclick="getLocation()">Get Location</button>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
 
+    <form id="loginForm" action="/login" method="post" class="mb-4">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-outline-primary" onclick="getLocation()">Get Location</button>
+        </div>
+    </form>
+
+    <p class="text-center">or</p>
+    <p class="text-center"><a href="/index">Register HERE</a></p>
+</div>
 {% endblock body %}

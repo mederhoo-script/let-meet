@@ -1,34 +1,46 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<form method="post" class="buttons">
-	<h3>Enter The Chat Room</h3>
-	<div>
-		<label>Name:</label>
-		<input type="text" placeholder="pick a name!" name="name" value="{{name}}" />
-	</div>
-	<div class="join" id="joinSection">
-		<input type="text" placeholder="Room Code" name="code" value="{{code}}" id="roomCodeInput"
-			style="display:none;" />
-		<button type="button" name="join" id="joinButton">Join a Room</button>
-		<button type="submit" name="join" id="joinButton1" style="display:none;">Join a Room</button>
-	</div>
-	<button type="submit" name="create" class="create-btn">Create a Room</button>
 
-	{% if error %}
-	<ul>
-		<li>
-			{{error}}
-		</li>
-	</ul>
-	{% endif %}
+<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
 
-</form>
+
+    <div class="container py-5 bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12"
+        style="background-image: url('https://media.istockphoto.com/id/944060480/photo/now-you-have-me-intrigued.jpg?s=612x612&w=0&k=20&c=d2S5-Cq-AWcBXg8oQI-ZchKx3iKFAhuHOvHEGwHKm00='); background-size: cover; background-position: center;">
+        <form method="post" class="chat-form">
+            <h3 class="mb-4">Enter the Chat Room</h3>
+
+            <div class="form-group mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Pick a name!" name="name"
+                    value="{{ name }}">
+            </div>
+
+            <div class="join-section d-flex align-items-center mb-3">
+                <button type="button" class="btn btn-primary me-3" id="joinButton">Join a Room</button>
+                <input type="text" class="form-control" id="roomCodeInput" placeholder="Room Code" name="code"
+                    value="{{ code }}" style="display: none;">
+                <button type="submit" name="join" id="joinButton1" class="btn btn-outline-primary"
+                    style="display: none;">Join</button>
+            </div>
+
+            <button type="submit" name="create" class="btn btn-success create-btn">Create a Room</button>
+
+            {% if error %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ error }}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+
+</div>
 
 <script>
-	document.getElementById("joinButton").addEventListener("click", function () {
-		document.getElementById("roomCodeInput").style.display = "block";
-		document.getElementById("joinButton").style.display = "none";
-		document.getElementById("joinButton1").style.display = "block";
-	});
+    document.getElementById("joinButton").addEventListener("click", function () {
+        document.getElementById("roomCodeInput").style.display = "block";
+        document.getElementById("joinButton").style.display = "none";
+        document.getElementById("joinButton1").style.display = "block";
+    });
 </script>
 {% endblock %}
